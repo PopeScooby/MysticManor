@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Fonts/Zombie_Holocaust.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Menu_CharacterSelect.gd" type="Script" id=2]
+[ext_resource path="res://Fonts/Nemo Nightmares.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Textures/Interface/Panel_Experience.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 120
+outline_size = 3
+outline_color = Color( 0.278431, 0.270588, 0.219608, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 38
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="Menu_CharacterSelect" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterPanel" type="TextureRect" parent="Background"]
+margin_left = 2.0
+margin_top = 81.0
+margin_right = 1276.0
+margin_bottom = 707.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu_Title" type="Label" parent="Background"]
+margin_right = 1280.0
+margin_bottom = 135.0
+rect_min_size = Vector2( 1280, 110 )
+custom_colors/font_color = Color( 1, 0.631373, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Select Character"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background"]
+margin_left = 110.0
+margin_top = 118.0
+margin_right = 1180.0
+margin_bottom = 598.0
+rect_min_size = Vector2( 1070, 480 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Background/ScrollContainer"]
+margin_right = 1070.0
+margin_bottom = 480.0
+rect_min_size = Vector2( 1070, 480 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenuBtn" type="Button" parent="Background"]
+margin_left = 480.0
+margin_top = 598.0
+margin_right = 783.0
+margin_bottom = 671.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.627451, 0.945098, 0.360784, 1 )
+custom_colors/font_color_pressed = Color( 0.101961, 0.403922, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Main menu"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Background/MainMenuBtn" to="." method="_on_MainMenuBtn_pressed"]

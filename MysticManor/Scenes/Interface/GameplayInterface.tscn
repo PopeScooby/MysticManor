@@ -1,0 +1,870 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Textures/Interface/MovePlayer.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/Griffy-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Textures/Interface/Btn_EndTurn.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Interface/Panel_Experience.png" type="Texture" id=4]
+[ext_resource path="res://Textures/Interface/Panel_Experience_Title.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/GameplayInterface.gd" type="Script" id=6]
+[ext_resource path="res://Textures/Interface/Btn_PlaceRoom.png" type="Texture" id=7]
+[ext_resource path="res://Textures/Interface/Btn_RotateRight.png" type="Texture" id=8]
+[ext_resource path="res://Textures/Interface/Btn_RotateLeft.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Interface/D6.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Fonts/Zombie_Holocaust.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://Textures/Interface/Btn_MoveLevel.png" type="Texture" id=12]
+[ext_resource path="res://Textures/Characters/PopeScooby.jpg" type="Texture" id=13]
+
+[sub_resource type="DynamicFont" id=10]
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=2]
+Label/colors/font_color = Color( 0, 0, 0, 1 )
+Label/fonts/font = SubResource( 10 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 13
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=9]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 25
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 18
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 35
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 11 )
+
+[node name="GameplayInterface" type="CanvasLayer"]
+script = ExtResource( 6 )
+
+[node name="Movement" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Movement"]
+margin_left = 1001.0
+margin_top = 524.0
+margin_right = 1245.0
+margin_bottom = 670.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit_North" type="TextureButton" parent="Movement"]
+margin_left = 1096.0
+margin_top = 536.0
+margin_right = 1136.0
+margin_bottom = 576.0
+rect_rotation = 90.0
+theme = SubResource( 2 )
+texture_normal = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit_South" type="TextureButton" parent="Movement"]
+margin_left = 1096.0
+margin_top = 618.0
+margin_right = 1136.0
+margin_bottom = 658.0
+rect_rotation = 90.0
+theme = SubResource( 2 )
+texture_normal = ExtResource( 1 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit_West" type="TextureButton" parent="Movement"]
+margin_left = 1015.0
+margin_top = 577.0
+margin_right = 1055.0
+margin_bottom = 617.0
+theme = SubResource( 2 )
+texture_normal = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit_East" type="TextureButton" parent="Movement"]
+margin_left = 1097.0
+margin_top = 577.0
+margin_right = 1137.0
+margin_bottom = 617.0
+theme = SubResource( 2 )
+texture_normal = ExtResource( 1 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit_Up" type="TextureButton" parent="Movement"]
+margin_left = 1056.0
+margin_top = 577.0
+margin_right = 1096.0
+margin_bottom = 597.0
+theme = SubResource( 2 )
+texture_normal = ExtResource( 12 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit_Down" type="TextureButton" parent="Movement"]
+margin_left = 1056.0
+margin_top = 597.0
+margin_right = 1096.0
+margin_bottom = 617.0
+theme = SubResource( 2 )
+texture_normal = ExtResource( 12 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Action_EndTurn" type="TextureButton" parent="Movement"]
+margin_left = 1145.0
+margin_top = 536.0
+margin_right = 1229.0
+margin_bottom = 658.0
+theme = SubResource( 2 )
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Experience" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="Experience"]
+margin_left = 836.0
+margin_top = 158.0
+margin_right = 1250.0
+margin_bottom = 598.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="Experience/Background"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 35.0
+margin_top = -25.0
+margin_right = 384.0
+margin_bottom = 32.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleText" type="Label" parent="Experience/Background/Title"]
+margin_left = 4.0
+margin_top = 1.0
+margin_right = 342.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 13 )
+text = "Smoke Cloud"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Experience/Background"]
+margin_left = 21.0
+margin_top = 37.0
+margin_right = 389.0
+margin_bottom = 410.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainText" type="Label" parent="Experience/Background/VBox"]
+margin_right = 368.0
+margin_bottom = 90.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "~As You Enter a cloud of smoke appears in the corner of the room. You hear it beckon you... 'Come to me, let me envelope you'"
+align = 3
+autowrap = true
+
+[node name="RollText" type="Label" parent="Experience/Background/VBox"]
+margin_top = 94.0
+margin_right = 368.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Roll 1 D6 and add your Wits"
+align = 1
+valign = 1
+
+[node name="CenterBox" type="CenterContainer" parent="Experience/Background/VBox"]
+margin_top = 117.0
+margin_right = 368.0
+margin_bottom = 181.0
+
+[node name="HBox_Dice" type="HBoxContainer" parent="Experience/Background/VBox/CenterBox"]
+margin_left = 117.0
+margin_right = 250.0
+margin_bottom = 64.0
+
+[node name="D6_1" parent="Experience/Background/VBox/CenterBox/HBox_Dice" instance=ExtResource( 10 )]
+
+[node name="StatText" type="Label" parent="Experience/Background/VBox/CenterBox/HBox_Dice"]
+margin_left = 68.0
+margin_top = 25.0
+margin_right = 133.0
+margin_bottom = 39.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = " + Wits (3)"
+
+[node name="ResultText" type="Label" parent="Experience/Background/VBox"]
+margin_top = 185.0
+margin_right = 368.0
+margin_bottom = 213.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+align = 3
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Action" type="TextureButton" parent="Experience/Background"]
+modulate = Color( 0.27451, 0.803922, 0.00784314, 1 )
+margin_left = 158.0
+margin_top = 366.0
+margin_right = 265.0
+margin_bottom = 414.0
+texture_normal = ExtResource( 5 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionText" type="Label" parent="Experience/Background/Action"]
+margin_left = 2.0
+margin_right = 105.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 14 )
+text = "Roll"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Character" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterPanel" type="TextureRect" parent="Character"]
+margin_left = 14.0
+margin_top = 541.0
+margin_right = 176.0
+margin_bottom = 707.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Character/CharacterPanel"]
+margin_left = 9.0
+margin_top = 9.0
+margin_right = 152.0
+margin_bottom = 156.0
+texture = ExtResource( 13 )
+expand = true
+
+[node name="Name" type="TextureRect" parent="Character/CharacterPanel"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 19.0
+margin_top = 140.0
+margin_right = 141.0
+margin_bottom = 171.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameText" type="Label" parent="Character/CharacterPanel/Name"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 120.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 9 )
+text = "Pope Scooby"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Actions" type="TextureRect" parent="Character"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 178.0
+margin_top = 541.0
+margin_right = 287.0
+margin_bottom = 572.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatText" type="Label" parent="Character/Stat_Actions"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 105.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 7 )
+text = "Actions"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Strength" type="TextureRect" parent="Character"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 178.0
+margin_top = 574.0
+margin_right = 287.0
+margin_bottom = 605.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatText" type="Label" parent="Character/Stat_Strength"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 105.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 7 )
+text = "Strength"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Dexterity" type="TextureRect" parent="Character"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 178.0
+margin_top = 608.0
+margin_right = 287.0
+margin_bottom = 639.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatText" type="Label" parent="Character/Stat_Dexterity"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 105.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 7 )
+text = "Dexterity"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Wits" type="TextureRect" parent="Character"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 178.0
+margin_top = 642.0
+margin_right = 287.0
+margin_bottom = 673.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatText" type="Label" parent="Character/Stat_Wits"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 105.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 7 )
+text = "Wits"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Intellect" type="TextureRect" parent="Character"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 178.0
+margin_top = 676.0
+margin_right = 287.0
+margin_bottom = 707.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatText" type="Label" parent="Character/Stat_Intellect"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 105.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 7 )
+text = "Intellect"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Amount_Actions" type="TextureRect" parent="Character"]
+margin_left = 289.0
+margin_top = 541.0
+margin_right = 320.0
+margin_bottom = 572.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountText" type="Label" parent="Character/Stat_Amount_Actions"]
+margin_left = 1.0
+margin_right = 30.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Amount_Strength" type="TextureRect" parent="Character"]
+margin_left = 289.0
+margin_top = 574.0
+margin_right = 320.0
+margin_bottom = 605.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountText" type="Label" parent="Character/Stat_Amount_Strength"]
+margin_left = 1.0
+margin_right = 30.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Amount_Dexterity" type="TextureRect" parent="Character"]
+margin_left = 289.0
+margin_top = 608.0
+margin_right = 320.0
+margin_bottom = 639.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountText" type="Label" parent="Character/Stat_Amount_Dexterity"]
+margin_left = 1.0
+margin_right = 30.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Amount_Wits" type="TextureRect" parent="Character"]
+margin_left = 289.0
+margin_top = 642.0
+margin_right = 320.0
+margin_bottom = 673.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountText" type="Label" parent="Character/Stat_Amount_Wits"]
+margin_left = 1.0
+margin_right = 30.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Amount_Intellect" type="TextureRect" parent="Character"]
+margin_left = 289.0
+margin_top = 676.0
+margin_right = 320.0
+margin_bottom = 707.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountText" type="Label" parent="Character/Stat_Amount_Intellect"]
+margin_left = 1.0
+margin_right = 30.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Items" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemPanel" type="TextureRect" parent="Items"]
+margin_left = 14.0
+margin_top = 388.0
+margin_right = 176.0
+margin_bottom = 539.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Item1" type="TextureButton" parent="Items"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 25.0
+margin_top = 399.0
+margin_right = 167.0
+margin_bottom = 430.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemText" type="Label" parent="Items/Item1"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 140.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 9 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Item2" type="TextureButton" parent="Items"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 25.0
+margin_top = 432.0
+margin_right = 167.0
+margin_bottom = 463.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemText" type="Label" parent="Items/Item2"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 140.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 9 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Item3" type="TextureButton" parent="Items"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 25.0
+margin_top = 465.0
+margin_right = 167.0
+margin_bottom = 496.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemText" type="Label" parent="Items/Item3"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 140.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 9 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Item4" type="TextureButton" parent="Items"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 25.0
+margin_top = 498.0
+margin_right = 167.0
+margin_bottom = 529.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemText" type="Label" parent="Items/Item4"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 140.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 9 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemDescription" type="TextureRect" parent="Items"]
+margin_left = 180.0
+margin_top = 155.0
+margin_right = 502.0
+margin_bottom = 537.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemName" type="TextureRect" parent="Items/ItemDescription"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 36.0
+margin_top = -26.0
+margin_right = 283.0
+margin_bottom = 31.0
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleText" type="Label" parent="Items/ItemDescription/ItemName"]
+margin_left = 4.0
+margin_top = 1.0
+margin_right = 243.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 3 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemText" type="Label" parent="Items/ItemDescription"]
+margin_left = 20.0
+margin_top = 37.0
+margin_right = 305.0
+margin_bottom = 237.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 12 )
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Action2" type="TextureButton" parent="Items/ItemDescription"]
+modulate = Color( 0.27451, 0.803922, 0.00784314, 1 )
+margin_left = 118.0
+margin_top = 321.0
+margin_right = 198.0
+margin_bottom = 357.0
+texture_normal = ExtResource( 5 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionText" type="Label" parent="Items/ItemDescription/Action2"]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 77.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 6 )
+text = "Use"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Placement" type="Control" parent="."]
+margin_right = 15.0
+margin_bottom = 15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Action_PlaceRoom" type="TextureButton" parent="Placement"]
+margin_left = 560.0
+margin_top = 466.0
+margin_right = 714.0
+margin_bottom = 530.0
+texture_normal = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Action_RotateLeft" type="TextureButton" parent="Placement"]
+margin_left = 385.0
+margin_top = 322.0
+margin_right = 449.0
+margin_bottom = 386.0
+theme = SubResource( 2 )
+texture_normal = ExtResource( 9 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Action_RotateRight" type="TextureButton" parent="Placement"]
+margin_left = 834.0
+margin_top = 322.0
+margin_right = 898.0
+margin_bottom = 386.0
+theme = SubResource( 2 )
+texture_normal = ExtResource( 8 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Movement/Exit_North" to="." method="_on_Exit_North_pressed"]
+[connection signal="pressed" from="Movement/Exit_South" to="." method="_on_Exit_South_pressed"]
+[connection signal="pressed" from="Movement/Exit_West" to="." method="_on_Exit_West_pressed"]
+[connection signal="pressed" from="Movement/Exit_East" to="." method="_on_Exit_East_pressed"]
+[connection signal="pressed" from="Movement/Exit_Up" to="." method="_on_Exit_Up_pressed"]
+[connection signal="pressed" from="Movement/Exit_Down" to="." method="_on_Exit_Down_pressed"]
+[connection signal="pressed" from="Movement/Action_EndTurn" to="." method="_on_Action_EndTurn_pressed"]
+[connection signal="pressed" from="Experience/Background/Action" to="." method="_on_Action_pressed"]
+[connection signal="pressed" from="Items/Item1" to="." method="_on_Item1_pressed"]
+[connection signal="pressed" from="Items/Item2" to="." method="_on_Item2_pressed"]
+[connection signal="pressed" from="Items/Item3" to="." method="_on_Item3_pressed"]
+[connection signal="pressed" from="Items/Item4" to="." method="_on_Item4_pressed"]
+[connection signal="pressed" from="Placement/Action_PlaceRoom" to="." method="_on_Action_PlaceRoom_pressed"]
+[connection signal="pressed" from="Placement/Action_RotateLeft" to="." method="_on_Action_RotateLeft_pressed"]
+[connection signal="pressed" from="Placement/Action_RotateRight" to="." method="_on_Action_RotateRight_pressed"]

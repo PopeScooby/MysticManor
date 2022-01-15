@@ -8,10 +8,39 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "",
+"class": "GitAPI",
+"language": "NativeScript",
+"path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Camera2D",
+"class": "ZoomingCamera2D",
+"language": "GDScript",
+"path": "res://Scripts/ZoomingCamera2D.gd"
+} ]
+_global_script_class_icons={
+"GitAPI": "",
+"ZoomingCamera2D": ""
+}
+
 [application]
 
 config/name="MysticManor"
+run/main_scene="res://Scenes/Interface/Menu_GameStart.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://Scripts/Global.gd"
+Rooms="*res://Scripts/Rooms.gd"
+Experiences="*res://Scripts/Experiences.gd"
+Items="*res://Scripts/Items.gd"
+Mysteries="*res://Scripts/Mysteries.gd"
+
+[gdnative]
+
+singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
 
 [physics]
 
