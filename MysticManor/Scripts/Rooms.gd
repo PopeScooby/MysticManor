@@ -1,10 +1,12 @@
 extends Node
 
 var RoomDict = {}
-var Exits = {"N":{"Enter_Dir":"S","Rotate_Right":"E","Rotate_Left":"W", "VectorMod": Vector2(0,-1)},
-			 "S":{"Enter_Dir":"N","Rotate_Right":"W","Rotate_Left":"E", "VectorMod": Vector2(0,1)},
-			 "E":{"Enter_Dir":"W","Rotate_Right":"S","Rotate_Left":"N", "VectorMod": Vector2(1,0)},
-			 "W":{"Enter_Dir":"E","Rotate_Right":"N","Rotate_Left":"S", "VectorMod": Vector2(-1,0)}}
+var Exits = {"N":{"Enter_Dir":"S","Rotate_Right":"E","Rotate_Left":"W", "VectorMod": Vector2(0,-1), "Type":"Door"},
+			 "S":{"Enter_Dir":"N","Rotate_Right":"W","Rotate_Left":"E", "VectorMod": Vector2(0,1), "Type":"Door"},
+			 "E":{"Enter_Dir":"W","Rotate_Right":"S","Rotate_Left":"N", "VectorMod": Vector2(1,0), "Type":"Door"},
+			 "W":{"Enter_Dir":"E","Rotate_Right":"N","Rotate_Left":"S", "VectorMod": Vector2(-1,0), "Type":"Door"},
+			 "U":{"Enter_Dir":"D","Type":"LevelChange"},
+			 "D":{"Enter_Dir":"U","Type":"LevelChange"}}
 
 func _ready():
 	self._set_rooms()
@@ -46,8 +48,9 @@ func _set_rooms():
 	self._add_room_dict(room_key, "Entryway4")
 	RoomDict[room_key]["RoomType"] = "Room"
 	RoomDict[room_key]["Floors"] = ["G"]
-	RoomDict[room_key]["Exits"] = ["N","S","W","D"]
-	RoomDict[room_key]["ExitRooms"] = {"D": {"Floor":-1,"Loc":Vector2(0,0)}}
+	RoomDict[room_key]["Exits"] = ["N","S","E","W"]
+#	RoomDict[room_key]["Exits"] = ["N","S","E","W","D"]
+#	RoomDict[room_key]["ExitRooms"] = {"D": {"Floor":-1,"Loc":Vector2(0,0)}}
 	RoomDict[room_key]["Grid"]["Loc"] = Vector2(1,1)
 
 	room_key = "4"
@@ -126,11 +129,10 @@ func _set_rooms():
 	RoomDict[room_key]["ExitRooms"] = {"D": {"Floor":0,"Loc":Vector2(1,0)}}
 
 	room_key = "16"
-	self._add_room_dict(room_key, "Landing_1")
+	self._add_room_dict(room_key, "Landing_2")
 	RoomDict[room_key]["RoomType"] = "Room"
 	RoomDict[room_key]["Floors"] = ["G","A","B"]
 	RoomDict[room_key]["Exits"] = ["N","S","E","W"]
-	RoomDict[room_key]["ExitRooms"] = {"D": {"Floor":0,"Loc":Vector2(1,1)}}
 
 	room_key = "17"
 	self._add_room_dict(room_key, "Chapel")
