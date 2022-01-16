@@ -1,0 +1,628 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Fonts/Antique Quest St.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Textures/Interface/Menu_Select.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/Griffy-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Textures/Interface/Panel_Experience_Title.png" type="Texture" id=4]
+[ext_resource path="res://Textures/Interface/Panel_Experience.png" type="Texture" id=5]
+[ext_resource path="res://Textures/Interface/Btn_MoveLevel.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/Menu_NewGame.gd" type="Script" id=7]
+[ext_resource path="res://Fonts/IMMORTAL.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 35
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.247059, 0.0941176, 0.0196078, 1 )
+
+[sub_resource type="DynamicFont" id=7]
+use_mipmaps = true
+use_filter = true
+extra_spacing_bottom = -9
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 25
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 20
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=11]
+Label/colors/font_color = Color( 0, 0, 0, 1 )
+Label/fonts/font = SubResource( 10 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 38
+outline_size = 1
+outline_color = Color( 0.419608, 0.164706, 0.164706, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=12]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[node name="Menu_NewGame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1248.0
+margin_bottom = -688.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 753.0
+margin_bottom = 270.0
+theme = SubResource( 2 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Background"]
+margin_left = 23.0
+margin_right = 730.0
+margin_bottom = 363.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewNameLbl" type="Label" parent="Background/VBox"]
+margin_right = 707.0
+margin_bottom = 54.0
+custom_colors/font_color = Color( 0.988235, 0.87451, 0.596078, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Character Name"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewNameTxt" type="LineEdit" parent="Background/VBox"]
+margin_top = 58.0
+margin_right = 707.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 0, 60 )
+custom_colors/clear_button_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/normal = SubResource( 4 )
+align = 1
+context_menu_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoText" type="Label" parent="Background/VBox"]
+margin_top = 122.0
+margin_right = 707.0
+margin_bottom = 136.0
+custom_fonts/font = SubResource( 7 )
+text = "Split 12 points however you choose amongst the four attributes. (Min 1, Max 6)"
+align = 1
+autowrap = true
+
+[node name="HBox_Stats" type="HBoxContainer" parent="Background/VBox"]
+margin_top = 140.0
+margin_right = 707.0
+margin_bottom = 171.0
+alignment = 1
+
+[node name="Stat_Strength" type="TextureRect" parent="Background/VBox/HBox_Stats"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 11.0
+margin_right = 120.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 109, 31 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatText" type="Label" parent="Background/VBox/HBox_Stats/Stat_Strength"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 105.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 8 )
+text = "Strength"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Amount_Strength" type="TextureRect" parent="Background/VBox/HBox_Stats"]
+margin_left = 124.0
+margin_right = 155.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 31, 31 )
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountText" type="Label" parent="Background/VBox/HBox_Stats/Stat_Amount_Strength"]
+margin_left = 1.0
+margin_right = 30.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox_Strength" type="VBoxContainer" parent="Background/VBox/HBox_Stats"]
+margin_left = 159.0
+margin_right = 179.0
+margin_bottom = 31.0
+custom_constants/separation = -1
+alignment = 1
+
+[node name="Strength_Up" type="TextureButton" parent="Background/VBox/HBox_Stats/VBox_Strength"]
+margin_top = 1.0
+margin_right = 20.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 20, 15 )
+theme = SubResource( 11 )
+texture_normal = ExtResource( 6 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Strength_Down" type="TextureButton" parent="Background/VBox/HBox_Stats/VBox_Strength"]
+margin_top = 15.0
+margin_right = 20.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 20, 15 )
+theme = SubResource( 11 )
+texture_normal = ExtResource( 6 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Dexterity" type="TextureRect" parent="Background/VBox/HBox_Stats"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 183.0
+margin_right = 292.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 109, 31 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatText" type="Label" parent="Background/VBox/HBox_Stats/Stat_Dexterity"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 105.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 8 )
+text = "Dexterity"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Amount_Dexterity" type="TextureRect" parent="Background/VBox/HBox_Stats"]
+margin_left = 296.0
+margin_right = 327.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 31, 31 )
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountText" type="Label" parent="Background/VBox/HBox_Stats/Stat_Amount_Dexterity"]
+margin_left = 1.0
+margin_right = 30.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox_Dexterity" type="VBoxContainer" parent="Background/VBox/HBox_Stats"]
+margin_left = 331.0
+margin_right = 351.0
+margin_bottom = 31.0
+custom_constants/separation = -1
+alignment = 1
+
+[node name="Dexterity_Up" type="TextureButton" parent="Background/VBox/HBox_Stats/VBox_Dexterity"]
+margin_top = 1.0
+margin_right = 20.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 20, 15 )
+theme = SubResource( 11 )
+texture_normal = ExtResource( 6 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dexterity_Down" type="TextureButton" parent="Background/VBox/HBox_Stats/VBox_Dexterity"]
+margin_top = 15.0
+margin_right = 20.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 20, 15 )
+theme = SubResource( 11 )
+texture_normal = ExtResource( 6 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Wits" type="TextureRect" parent="Background/VBox/HBox_Stats"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 355.0
+margin_right = 464.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 109, 31 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatText" type="Label" parent="Background/VBox/HBox_Stats/Stat_Wits"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 105.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 8 )
+text = "Wits"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Amount_Wits" type="TextureRect" parent="Background/VBox/HBox_Stats"]
+margin_left = 468.0
+margin_right = 499.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 31, 31 )
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountText" type="Label" parent="Background/VBox/HBox_Stats/Stat_Amount_Wits"]
+margin_left = 1.0
+margin_right = 30.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox_Wits" type="VBoxContainer" parent="Background/VBox/HBox_Stats"]
+margin_left = 503.0
+margin_right = 523.0
+margin_bottom = 31.0
+custom_constants/separation = -1
+alignment = 1
+
+[node name="Wits_Up" type="TextureButton" parent="Background/VBox/HBox_Stats/VBox_Wits"]
+margin_top = 1.0
+margin_right = 20.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 20, 15 )
+theme = SubResource( 11 )
+texture_normal = ExtResource( 6 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wits_Down" type="TextureButton" parent="Background/VBox/HBox_Stats/VBox_Wits"]
+margin_top = 15.0
+margin_right = 20.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 20, 15 )
+theme = SubResource( 11 )
+texture_normal = ExtResource( 6 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Intellect" type="TextureRect" parent="Background/VBox/HBox_Stats"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 527.0
+margin_right = 636.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 109, 31 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatText" type="Label" parent="Background/VBox/HBox_Stats/Stat_Intellect"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 105.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 8 )
+text = "Intellect"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Amount_Intellect" type="TextureRect" parent="Background/VBox/HBox_Stats"]
+margin_left = 640.0
+margin_right = 671.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 31, 31 )
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountText" type="Label" parent="Background/VBox/HBox_Stats/Stat_Amount_Intellect"]
+margin_left = 1.0
+margin_right = 30.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox_Intellect" type="VBoxContainer" parent="Background/VBox/HBox_Stats"]
+margin_left = 675.0
+margin_right = 695.0
+margin_bottom = 31.0
+custom_constants/separation = -1
+alignment = 1
+
+[node name="Intellect_Up" type="TextureButton" parent="Background/VBox/HBox_Stats/VBox_Intellect"]
+margin_top = 1.0
+margin_right = 20.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 20, 15 )
+theme = SubResource( 11 )
+texture_normal = ExtResource( 6 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Intellect_Down" type="TextureButton" parent="Background/VBox/HBox_Stats/VBox_Intellect"]
+margin_top = 15.0
+margin_right = 20.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 20, 15 )
+theme = SubResource( 11 )
+texture_normal = ExtResource( 6 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox_Total" type="HBoxContainer" parent="Background/VBox"]
+margin_top = 175.0
+margin_right = 707.0
+margin_bottom = 206.0
+alignment = 1
+
+[node name="Stat_Avail" type="TextureRect" parent="Background/VBox/HBox_Total"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 171.0
+margin_right = 316.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 145, 31 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatText" type="Label" parent="Background/VBox/HBox_Total/Stat_Avail"]
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 138.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 8 )
+text = "Points Available"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Amount_Avail" type="TextureRect" parent="Background/VBox/HBox_Total"]
+margin_left = 320.0
+margin_right = 351.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 31, 31 )
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountText" type="Label" parent="Background/VBox/HBox_Total/Stat_Amount_Avail"]
+margin_left = 1.0
+margin_right = 30.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Used" type="TextureRect" parent="Background/VBox/HBox_Total"]
+modulate = Color( 0.988235, 0.87451, 0.596078, 1 )
+margin_left = 355.0
+margin_right = 500.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 145, 31 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatText" type="Label" parent="Background/VBox/HBox_Total/Stat_Used"]
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 138.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 8 )
+text = "Points Used"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stat_Amount_Used" type="TextureRect" parent="Background/VBox/HBox_Total"]
+margin_left = 504.0
+margin_right = 535.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 31, 31 )
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountText" type="Label" parent="Background/VBox/HBox_Total/Stat_Amount_Used"]
+margin_left = 1.0
+margin_right = 30.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "12"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGameBtn" type="Button" parent="Background/VBox"]
+margin_top = 210.0
+margin_right = 707.0
+margin_bottom = 268.0
+custom_colors/font_color = Color( 0.882353, 0.847059, 0.756863, 1 )
+custom_colors/font_color_hover = Color( 0.627451, 0.945098, 0.360784, 1 )
+custom_colors/font_color_pressed = Color( 0.101961, 0.403922, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Create Character & Play"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButton" type="TextureButton" parent="Background"]
+margin_left = 717.0
+margin_top = 8.0
+margin_right = 741.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseText" type="Label" parent="Background/CloseButton"]
+margin_top = 2.0
+margin_right = 24.0
+margin_bottom = 24.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "X"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selector" type="TextureRect" parent="."]
+visible = false
+margin_left = 74.751
+margin_top = 294.52
+margin_right = 432.751
+margin_bottom = 348.52
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="text_changed" from="Background/VBox/NewNameTxt" to="." method="_on_NewNameTxt_text_changed"]
+[connection signal="pressed" from="Background/VBox/HBox_Stats/VBox_Strength/Strength_Up" to="." method="_on_Strength_Up_pressed"]
+[connection signal="pressed" from="Background/VBox/HBox_Stats/VBox_Strength/Strength_Down" to="." method="_on_Strength_Down_pressed"]
+[connection signal="pressed" from="Background/VBox/HBox_Stats/VBox_Dexterity/Dexterity_Up" to="." method="_on_Dexterity_Up_pressed"]
+[connection signal="pressed" from="Background/VBox/HBox_Stats/VBox_Dexterity/Dexterity_Down" to="." method="_on_Dexterity_Down_pressed"]
+[connection signal="pressed" from="Background/VBox/HBox_Stats/VBox_Wits/Wits_Up" to="." method="_on_Wits_Up_pressed"]
+[connection signal="pressed" from="Background/VBox/HBox_Stats/VBox_Wits/Wits_Down" to="." method="_on_Wits_Down_pressed"]
+[connection signal="pressed" from="Background/VBox/HBox_Stats/VBox_Intellect/Intellect_Up" to="." method="_on_Intellect_Up_pressed"]
+[connection signal="pressed" from="Background/VBox/HBox_Stats/VBox_Intellect/Intellect_Down" to="." method="_on_Intellect_Down_pressed"]
+[connection signal="pressed" from="Background/VBox/StartGameBtn" to="." method="_on_StartGameBtn_pressed"]
+[connection signal="pressed" from="Background/CloseButton" to="." method="_on_CloseButton_pressed"]
