@@ -8,7 +8,7 @@ func _add_enemy_dict(enemy_key, enemy_name):
 		"EnemyType": "Boss",
 		"EnemyItem": "",
 		"Actions": 3,
-		"Grid": {"Floor":0, "Loc":Vector2(2,3)}
+		"Grid": {"Floor":0, "Loc":Vector2(0,0)}
 	}
 
 func _set_enemies():

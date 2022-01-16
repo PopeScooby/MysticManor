@@ -11,40 +11,16 @@ var RoomDeck = []
 var ExperienceDeck = []
 var ItemDeck = []
 var HouseDict = {}
+var EmptyRoomDict = {}
 var EmptyRooms = {}
 var LandingDict = {}
 var MoveDict = {}
-var EnemyList = {"Boss":
-	{
-		"EnemyID": "1",
-		"EnemyName": "Zombie Cowboy",
-		"EnemyType": "Boss",
-		"EnemyItem": "",
-		"Actions": 1,
-		"Grid": {"Floor":0, "Loc":Vector2(2,3)}
-	}
-}
+var EnemyList = []
 var RouteDict = {}
 
 var DieResults = {6: [1,2,3,4,5,6]}
 var DieRolled = {"D6_1": false, "D6_2": false}
-var EmptyRoomDict = {
-	0: {
-		Vector2(0,-1): {"Dir_Moved":"N"},
-		Vector2(1,-1): {"Dir_Moved":"N"},
-		Vector2(2,0): {"Dir_Moved":"E"},
-		Vector2(0,2): {"Dir_Moved":"S"},
-		Vector2(1,2): {"Dir_Moved":"S"}
-	},
-	1: {
-		Vector2(0,-1): {"Dir_Moved":"N"},
-		Vector2(1,0): {"Dir_Moved":"E"},
-		Vector2(1,1): {"Dir_Moved":"E"},
-		Vector2(-1,-1): {"Dir_Moved":"W"},
-		Vector2(-1,0): {"Dir_Moved":"W"},
-		Vector2(0,2): {"Dir_Moved":"S"}
-	}
-}
+
 
 
 func _ready():
@@ -91,26 +67,49 @@ func get_new_dicts():
 #	}
 	LandingDict = {0: [Vector2(1,0)], 1:[Vector2(0,0)]}
 	HouseDict = {
-		0: {Vector2(0,0): "1",Vector2(0,1): "2",Vector2(1,1): "3",Vector2(1,0): "4",Vector2(0,2): "11",Vector2(1,2): "20",
-			Vector2(0,3): "17",Vector2(1,3): "8",Vector2(2,0): "13",Vector2(2,1): "14",Vector2(2,2): "6",Vector2(2,3): "12"},
+		0: {Vector2(0,0): "1",Vector2(0,1): "2",Vector2(1,1): "3",Vector2(1,0): "4"},
 		1: {Vector2(0,0): "15",Vector2(0,1): "16"}
 	}
+	EmptyRoomDict = {
+		0: {
+			Vector2(0,-1): {"Dir_Moved":"N"},
+			Vector2(1,-1): {"Dir_Moved":"N"},
+			Vector2(2,1): {"Dir_Moved":"E"},
+			Vector2(0,2): {"Dir_Moved":"S"},
+			Vector2(1,2): {"Dir_Moved":"S"}
+		},
+		1: {
+			Vector2(0,-1): {"Dir_Moved":"N"},
+			Vector2(1,0): {"Dir_Moved":"E"},
+			Vector2(1,1): {"Dir_Moved":"E"},
+			Vector2(-1,-1): {"Dir_Moved":"W"},
+			Vector2(0,2): {"Dir_Moved":"S"}
+		}
+	}
 	EmptyRooms = {
-		0: [Vector2(0,-1), Vector2(1,-1), Vector2(3,0), Vector2(3,3), Vector2(2,4), Vector2(1,4)],
-		1: [Vector2(0,-1), Vector2(1,0), Vector2(1,1), Vector2(-1,-1), Vector2(-1,0), Vector2(0,2)]
+		0: [Vector2(0,-1), Vector2(1,-1), Vector2(0,2), Vector2(2,1), Vector2(1,2)],
+		1: [Vector2(0,-1), Vector2(1,0), Vector2(1,1), Vector2(-1,1), Vector2(0,2)]
 	}
 	MysteryDeck = self.PlayerDict["MysteryDeck"]
-	RoomDeck = ["5","6","7","8","9","10","11","12","13","14"]
+	RoomDeck = ["5","6","7","8","9","10","11","12","13","14","17","18","19","20"]
 	ExperienceDeck = ["1","2","3","4","5","6","7","8","9","10"]
 	ItemDeck = ["1"]
 	self.reset_move_dict()
+
+func add_enemy(enemy_key):
+	var source_dict = Enemies.EnemiesDict[enemy_key]
+	EnemyList["Boss"]["EnemyID"] = enemy_key
+	EnemyList["Boss"]["EnemyName"] = source_dict["EnemyName"]
+	EnemyList["Boss"]["EnemyType"] = source_dict["EnemyType"]
+	EnemyList["Boss"]["Actions"] = source_dict["Actions"]
+	EnemyList["Boss"]["Grid"] = source_dict["Grid"]
 
 
 func set_player_dict(CharName):
 	self.PlayerDict = {
 		"Character": CharName,
 		"Mystery": "",
-		"Grid": {"Floor":0, "Loc":Vector2(1,2)},
+		"Grid": {"Floor":0, "Loc":Vector2(0,0)},
 		"Actions": self.CharDict[CharName]["Stats"]["Actions"],
 		"Stats_Original": {
 			"Wits": self.CharDict[CharName]["Stats"]["Wits"],
@@ -147,14 +146,7 @@ func reset_route_dict():
 	self.RouteDict = {
 		"Exits":{}
 	}
-#	self.RouteDict = {
-#		"Exits":{},
-#		"Working": {
-#			"Exit": "",
-#			"Route": [],
-#			"Rooms": {}
-#		}
-#	}
+
 
 func draw_mystery():
 	randomize()

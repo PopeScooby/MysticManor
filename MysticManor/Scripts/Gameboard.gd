@@ -220,7 +220,11 @@ func _exec_state_enemy_move():
 		while curr_actions > 0:
 			curr_actions -= 1
 			var move_dir = _get_enemy_route(enemy)
-			Global.EnemyList[enemy]["Grid"]["Loc"] = Global.EnemyList[enemy]["Grid"]["Loc"] + Rooms.Exits[move_dir]["VectorMod"]
+			if Rooms.Exits[move_dir]["Type"] == "Door":
+				Global.EnemyList[enemy]["Grid"]["Loc"] = Global.EnemyList[enemy]["Grid"]["Loc"] + Rooms.Exits[move_dir]["VectorMod"]
+			elif Rooms.Exits[move_dir]["Type"] == "LevelChange":
+				Global.EnemyList[enemy]["Grid"]["Floor"] = Global.RouteDict["EnemyRoom"]["ExitRooms"][move_dir]["Floor"]
+				Global.EnemyList[enemy]["Grid"]["Loc"] = Global.RouteDict["EnemyRoom"]["ExitRooms"][move_dir]["Loc"]
 			set_enemy_pos(enemy)
 	Global.new_turn()
 	$GameplayInterface.set_exit_buttons()
@@ -330,30 +334,60 @@ func _get_enemy_route(enemy):
 	Global.RouteDict["EnemyLoc"] = enemy_dict["Grid"]["Loc"]
 	Global.RouteDict["StartRoomID"] = Global.HouseDict[Global.RouteDict["EnemyFloor"]][Global.RouteDict["EnemyLoc"]]
 	Global.RouteDict["EnemyRoom"] = Rooms.RoomDict[Global.RouteDict["StartRoomID"]]
+	Global.RouteDict["CheckedRooms"] = {
+		0:[],
+		1:[]}
 	for room_exit in Global.RouteDict["EnemyRoom"]["Exits"]:
 		if Rooms.Exits.has(room_exit):
-			var check_loc = Global.RouteDict["EnemyLoc"] + Rooms.Exits[room_exit]["VectorMod"]
-			if not Global.EmptyRooms[Global.RouteDict["EnemyFloor"]].has(check_loc):
-				Global.RouteDict["Exits"][room_exit] = {
-					"Curr": [],
-					"Next": [check_loc]
-				}
+			if Rooms.Exits[room_exit]["Type"] == "Door":
+				var check_loc = Global.RouteDict["EnemyLoc"] + Rooms.Exits[room_exit]["VectorMod"]
+				if not Global.EmptyRooms[Global.RouteDict["EnemyFloor"]].has(check_loc):
+					Global.RouteDict["Exits"][room_exit] = {
+						"Curr": {},
+						"Next": {Global.RouteDict["EnemyFloor"]:[check_loc]}
+					}
+			elif Rooms.Exits[room_exit]["Type"] == "LevelChange":
+				var check_loc = Rooms.RoomDict[Global.HouseDict[Global.RouteDict["EnemyFloor"]][Global.RouteDict["EnemyLoc"]]]["ExitRooms"][room_exit]["Loc"]
+				var check_floor = Rooms.RoomDict[Global.HouseDict[Global.RouteDict["EnemyFloor"]][Global.RouteDict["EnemyLoc"]]]["ExitRooms"][room_exit]["Floor"]
+				if not Global.EmptyRooms[check_floor].has(check_loc):
+					Global.RouteDict["Exits"][room_exit] = {
+						"Curr": {},
+						"Next": {check_floor:[check_loc]}
+					}
+	Global.RouteDict["CheckedRooms"][Global.RouteDict["EnemyFloor"]].append(Global.RouteDict["EnemyLoc"])
 	return _get_route_dir()
 
 func _get_route_dir():
-		for room_exit in Global.RouteDict["Exits"]:
-			Global.RouteDict["Exits"][room_exit]["Curr"] = Global.RouteDict["Exits"][room_exit]["Next"]
-			Global.RouteDict["Exits"][room_exit]["Next"] = []
-			for curr_loc in Global.RouteDict["Exits"][room_exit]["Curr"]:
-				if curr_loc == Global.PlayerDict["Grid"]["Loc"]:
+	for room_exit in Global.RouteDict["Exits"]:
+		Global.RouteDict["Exits"][room_exit]["Curr"] = Global.RouteDict["Exits"][room_exit]["Next"]
+		var curr_rooms = Global.RouteDict["Exits"][room_exit]["Curr"]
+		var next_rooms = {}
+		for curr_floor in curr_rooms:
+			for curr_loc in curr_rooms[curr_floor]:
+				if curr_floor == Global.PlayerDict["Grid"]["Floor"] and curr_loc == Global.PlayerDict["Grid"]["Loc"]:
 					return room_exit
 				else:
-					for exit in Rooms.RoomDict[Global.HouseDict[Global.RouteDict["EnemyFloor"]][curr_loc]]["Exits"]:
+					var curr_room_key = Global.HouseDict[curr_floor][curr_loc]
+					for exit in Rooms.RoomDict[curr_room_key]["Exits"]:
 						if Rooms.Exits.has(exit):
-							var check_loc = curr_loc + Rooms.Exits[exit]["VectorMod"]
-							if not Global.EmptyRooms[Global.RouteDict["EnemyFloor"]].has(check_loc):
-								Global.RouteDict["Exits"][room_exit]["Next"].append(check_loc)
-		return _get_route_dir()
+							if Rooms.Exits[exit]["Type"] == "Door":
+								var check_loc = curr_loc + Rooms.Exits[exit]["VectorMod"]
+								if not Global.EmptyRooms[curr_floor].has(check_loc) and not Global.RouteDict["CheckedRooms"][curr_floor].has(check_loc):
+									if not next_rooms.has(curr_floor):
+										next_rooms[curr_floor] = []
+									if not next_rooms[curr_floor].has(check_loc):
+										next_rooms[curr_floor].append(check_loc)
+							elif Rooms.Exits[exit]["Type"] == "LevelChange":
+								var check_loc = Rooms.RoomDict[curr_room_key]["ExitRooms"][exit]["Loc"]
+								var check_floor = Rooms.RoomDict[curr_room_key]["ExitRooms"][exit]["Floor"]
+								if not Global.EmptyRooms[check_floor].has(check_loc) and not Global.RouteDict["CheckedRooms"][check_floor].has(check_loc):
+									if not next_rooms.has(check_floor):
+										next_rooms[check_floor] = []
+									if not next_rooms[check_floor].has(check_loc):
+										next_rooms[check_floor].append(check_loc)
+					Global.RouteDict["CheckedRooms"][curr_floor].append(curr_loc)
+		Global.RouteDict["Exits"][room_exit]["Next"] = next_rooms
+	return _get_route_dir()
 
 
 func draw_room_tile():
